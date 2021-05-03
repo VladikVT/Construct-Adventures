@@ -1,4 +1,6 @@
 #include <iostream>
+#include <fstream>
+#include <string>
 
 using namespace std;
 
@@ -16,28 +18,73 @@ int main()
 	int playerY = 2;
 	/* Player */
 
+	/* Config Skins (DONT CHANGE THIS) */
+	string groundConfSkin = "g";
+	string playerConfSkin = "Pl";
+	/* Config Skins (DONT CHANGE THIS) */
+
 	/* Skins */
 	string groundSkin = "..";
 	string playerSkin = "Pl";
 	/* Skins */
 
-	for (int y = 0; y < mapY; y++)
+    string path = "config/mapLayerMAIN.txt";
+    string confMap[mapY][mapX] = {};
+
+    ifstream fin;
+    fin.open(path);
+
+    if (!fin.is_open())
+    {
+        cout << "Error: Can`t open file" << endl;
+    }
+    else
+    {
+        cout << "Success: file open" << endl;
+
+        for (int i = 0; i < mapY; ++i)
+        {
+            for (int j = 0; j < mapX; j++)
+            {
+                fin >> confMap[i][j];
+            }
+        }
+    }
+
+    fin.close();
+
+    for (int y = 0; y < mapY; y++)
+    {
+        for (int x = 0; x < mapX; x++)
+        {
+            if (confMap[y][x] == groundConfSkin)
+            {
+                map[y][x] = groundSkin;
+            }
+            else if (confMap[y][x] == playerConfSkin)
+            {
+                map[y][x] = playerSkin;
+            }
+            else 
+            {
+                cout << "Error: Configeration skin not found";
+            }
+
+            cout << map[y][x];
+        }
+        cout << endl;
+    }
+
+	while (true)
 	{
-		for (int x = 0; x < mapX; x++)
+		char moveKey;
+		cin >> moveKey;
+		moveKey = tolower(moveKey);
+		if (moveKey == 'a')
 		{
-			map[y][x] = groundSkin;
+			playerX--;
 		}
 	}
 
-	map[playerY][playerX] = playerSkin;
-
-	for (int y = 0; y < mapY; y++)
-	{
-		for (int x = 0; x < mapX; x++)
-		{
-			cout << map[y][x];
-		}
-		cout << "\n";
-	}
 	return 0;
 }
