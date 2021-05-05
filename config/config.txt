@@ -1,0 +1,7 @@
+pathMapLayerMAIN:config/mapLayerMAIN.txt
+
+mapX:5
+mapY:5
+
+skinGround:..
+skinPlayer:Pl
