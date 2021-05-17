@@ -1,7 +1,14 @@
+pathMapLayerSHADOW:config/mapLayerSHADOW.txt
 pathMapLayerMAIN:config/mapLayerMAIN.txt
+pathMapLayerSOLID:config/mapLayerSOLID.txt
 
 mapX:5
 mapY:5
 
-skinGround:..
+skinNothing:nf
+skinSolid:sl
+
+skinGround:..  
 skinPlayer:Pl
+skinWall:[]
+skinButton:.o
